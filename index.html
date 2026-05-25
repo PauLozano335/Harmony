@@ -108,11 +108,34 @@
                 <h2>Gestión de Citas</h2>
             </div>
 
-            <div class="booking-main-container">
-                <form class="modern-form">
-                    <p class="intro-booking">Completa tus datos para iniciar la solicitud de tu cita médica personalizada.</p>
+            <div class="booking-grid">
+                <div class="booking-info">
+                    <p class="intro-booking">Disponemos de un sistema ágil de reservas para garantizar un tiempo exclusivo asignado a cada tratamiento sanitario.</p>
                     
-                    <div class="form-grid-two">
+                    <div class="bizum-card">
+                        <div class="bizum-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3>Garantía de Reserva</h3>
+                        <p>Para confirmar la reserva de la cita se solicitará una señal mediante <strong>Bizum</strong>. Esto ayuda a garantizar la disponibilidad de la hora reservada y evitar cancelaciones de última hora.</p>
+                        <ul class="bizum-notes">
+                            <li><i class="fa-solid fa-check"></i> La señal se descontará del precio final de la consulta.</li>
+                            <li><i class="fa-solid fa-triangle-exclamation"></i> Las cancelaciones con poca antelación pueden perder la reserva.</li>
+                        </ul>
+                    </div>
+
+                    <div class="direct-channels">
+                        <a href="https://wa.me/34600000000" target="_blank" class="btn btn-whatsapp-direct">
+                            <i class="fa-brands fa-whatsapp"></i> Reservar por WhatsApp
+                        </a>
+                        <a href="mailto:citas@harmonyclinica.com" class="btn btn-email-direct">
+                            <i class="fa-regular fa-envelope"></i> Enviar Email Directo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="booking-form-container">
+                    <form class="modern-form">
                         <div class="form-group">
                             <label for="nombre">Nombre Completo</label>
                             <input type="text" id="nombre" placeholder="Ej. Ana García" required>
@@ -122,57 +145,26 @@
                             <label for="telefono">Teléfono de Contacto</label>
                             <input type="tel" id="telefono" placeholder="Ej. 600 000 000" required>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="servicio">Especialidad Requerida</label>
-                        <select id="servicio" required>
-                            <option value="" disabled selected>Selecciona un servicio</option>
-                            <option value="logopedia">Logopedia Clínica Avanzada</option>
-                            <option value="psicologia">Psicología y Neuropsicología</option>
-                            <option value="psiquiatria">Psiquiatría</option>
-                            <option value="fisioterapia">Fisioterapia</option>
-                            <option value="nutricion">Nutrición</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="mensaje">Mensaje o Preferencia Horaria</label>
-                        <textarea id="mensaje" rows="3" placeholder="Indícanos brevemente tu disponibilidad o motivo de consulta..."></textarea>
-                    </div>
-
-                    <div class="booking-channels-wrapper">
-                        <h3>¿Cómo prefieres gestionar y confirmar tu reserva?</h3>
-                        <p class="channels-sub">Selecciona tu canal de comunicación preferido para que nuestro equipo procese la cita:</p>
-                        
-                        <div class="channels-options-grid">
-                            <a href="https://wa.me/34600000000" target="_blank" class="channel-option-card whatsapp-variant">
-                                <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
-                                <div class="card-text">
-                                    <h4>Confirmar vía WhatsApp</h4>
-                                    <p>Asistente virtual rápido e inmediato</p>
-                                </div>
-                            </a>
-
-                            <a href="mailto:citas@harmonyclinica.com" class="channel-option-card email-variant">
-                                <div class="card-icon"><i class="fa-regular fa-envelope"></i></div>
-                                <div class="card-text">
-                                    <h4>Confirmar vía Email</h4>
-                                    <p>Gestión formal por correo electrónico</p>
-                                </div>
-                            </a>
+                        <div class="form-group">
+                            <label for="servicio">Especialidad Requerida</label>
+                            <select id="servicio" required>
+                                <option value="" disabled selected>Selecciona un servicio</option>
+                                <option value="logopedia">Logopedia Clínica Avanzada</option>
+                                <option value="psicologia">Psicología y Neuropsicología</option>
+                                <option value="psiquiatria">Psiquiatría</option>
+                                <option value="fisioterapia">Fisioterapia</option>
+                                <option value="nutricion">Nutrición</option>
+                            </select>
                         </div>
-                    </div>
-                </form>
-            </div>
 
-            <div class="booking-footer-info">
-                <div class="bizum-card-wide">
-                    <div class="bizum-title-area">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <h3>Garantía de Reserva Sanitaria</h3>
-                    </div>
-                    <p>Para confirmar de forma definitiva la hora asignada, se requerirá una pequeña señal mediante <strong>Bizum</strong> que se descontará íntegramente del importe final de tu consulta.</p>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje o Preferencia Horaria</label>
+                            <textarea id="mensaje" rows="4" placeholder="Indícanos brevemente tu motivo de consulta o disponibilidad..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">Solicitar Cita Previa</button>
+                    </form>
                 </div>
             </div>
         </div>
