@@ -1,0 +1,667 @@
+/* ==========================================================================
+   1. VARIABLES DE ESTILO Y CONFIGURACIÓN GENERAL
+   ========================================================================== */
+:root {
+    --primary-gold: #C9A44C;
+    --primary-gold-hover: #b08d3b;
+    --dark-black: #111111;
+    --light-black: #1a1a1a;
+    --pure-white: #ffffff;
+    --off-white: #f9f9f9;
+    --soft-gray: #ececec;
+    --muted-text: #666666;
+    --border-color: #e0e0e0;
+    
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+    
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    --shadow-premium: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--pure-white);
+    color: var(--dark-black);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Estructuras contenedoras reusables */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Encabezados de sección comunes */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.subtitle {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    color: var(--primary-gold);
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+}
+
+/* Botones con estilo Premium */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary {
+    background-color: var(--primary-gold);
+    color: var(--pure-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-black);
+    color: var(--primary-gold);
+    border-color: var(--primary-gold);
+}
+
+/* ==========================================================================
+   2. NAVEGACIÓN STICKY
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.25rem 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--dark-black);
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--dark-black);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--primary-gold);
+    transition: var(--transition-smooth);
+}
+
+.nav-menu a:hover {
+    color: var(--primary-gold);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. HERO PRINCIPAL
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1800');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+/* Capa oscura sofisticada sobre la imagen del Hero */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 0.4), rgba(17, 17, 17, 0.6));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    color: var(--pure-white);
+}
+
+.hero-content h1 {
+    font-family: var(--font-serif);
+    font-size: 3.8rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================================
+   4. SOBRE NOSOTROS
+   ========================================================================== */
+.about-section {
+    padding: 8rem 0;
+    background-color: var(--pure-white);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    margin-bottom: 2rem;
+}
+
+.about-text p {
+    color: var(--muted-text);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    box-shadow: var(--shadow-premium);
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   5. SERVICIOS (TARJETAS PREMIUM)
+   ========================================================================== */
+.services-section {
+    padding: 8rem 0;
+    background-color: var(--off-white);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.service-card {
+    background-color: var(--pure-white);
+    padding: 3.5rem 2.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: var(--shadow-premium);
+    transition: var(--transition-smooth);
+    text-align: center;
+}
+
+.service-icon {
+    font-size: 2.2rem;
+    color: var(--primary-gold);
+    margin-bottom: 1.75rem;
+    transition: var(--transition-smooth);
+}
+
+.service-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--dark-black);
+}
+
+.service-card p {
+    color: var(--muted-text);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* Animación Hover de Tarjetas */
+.service-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-gold);
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   6. RESERVA DE CITAS Y SECCIÓN BIZUM
+   ========================================================================== */
+.booking-section {
+    padding: 8rem 0;
+    background-color: var(--pure-white);
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.intro-booking {
+    font-size: 1.1rem;
+    color: var(--muted-text);
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+/* Tarjeta elegante de Bizum */
+.bizum-card {
+    background-color: var(--light-black);
+    color: var(--pure-white);
+    padding: 2.5rem;
+    border-radius: 2px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.bizum-icon {
+    font-size: 2rem;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+}
+
+.bizum-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.bizum-card p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.bizum-notes {
+    list-style: none;
+}
+
+.bizum-notes li {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bizum-notes i {
+    color: var(--primary-gold);
+    font-size: 0.85rem;
+}
+
+/* Canales directos (Botones WhatsApp y Email) */
+.direct-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-whatsapp-direct {
+    background-color: #25D366;
+    color: var(--pure-white);
+}
+
+.btn-whatsapp-direct:hover {
+    background-color: #1ebd54;
+    transform: translateY(-2px);
+}
+
+.btn-email-direct {
+    background-color: transparent;
+    border: 1px solid var(--dark-black);
+    color: var(--dark-black);
+}
+
+.btn-email-direct:hover {
+    background-color: var(--dark-black);
+    color: var(--pure-white);
+    transform: translateY(-2px);
+}
+
+/* Formulario moderno */
+.booking-form-container {
+    background-color: var(--off-white);
+    padding: 3.5rem 2.5rem;
+    box-shadow: var(--shadow-premium);
+    border-top: 3px solid var(--primary-gold);
+}
+
+.modern-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.modern-form label {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.modern-form input,
+.modern-form select,
+.modern-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--pure-white);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--dark-black);
+    transition: var(--transition-smooth);
+}
+
+.modern-form input:focus,
+.modern-form select:focus,
+.modern-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+}
+
+.btn-submit {
+    background-color: var(--dark-black);
+    color: var(--pure-white);
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-gold);
+    color: var(--pure-white);
+}
+
+/* ==========================================================================
+   7. TESTIMONIOS
+   ========================================================================== */
+.testimonials-section {
+    padding: 8rem 0;
+    background-color: var(--off-white);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.testimonial-card {
+    background-color: var(--pure-white);
+    padding: 3rem 2rem;
+    box-shadow: var(--shadow-premium);
+    position: relative;
+}
+
+.stars {
+    color: var(--primary-gold);
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: var(--muted-text);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.patient-name {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--dark-black);
+    font-weight: 600;
+    display: block;
+}
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+.main-footer {
+    background-color: var(--dark-black);
+    color: var(--pure-white);
+    padding: 5rem 0 2rem 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 4rem;
+}
+
+.footer-brand h2 {
+    font-family: var(--font-serif);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.footer-brand p {
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+}
+
+.footer-contact h3,
+.footer-social h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--primary-gold);
+}
+
+.footer-contact p {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.social-links a {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.2rem;
+    transition: var(--transition-smooth);
+}
+
+.social-links a:hover {
+    color: var(--primary-gold);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   9. BOTÓN FLOTANTE WHATSAPP
+   ========================================================================== */
+.whatsapp-floating {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #25D366;
+    color: var(--pure-white);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.whatsapp-floating:hover {
+    transform: scale(1.1);
+    background-color: #1ebd54;
+}
+
+/* ==========================================================================
+   10. MEDIA QUERIES (DISEÑO RESPONSIVE)
+   ========================================================================== */
+
+/* Tablets y ordenadores pequeños */
+@media (max-width: 992px) {
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .about-grid, 
+    .booking-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .about-image {
+        order: -1; /* Muestra la imagen arriba en móviles */
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+/* Teléfonos inteligentes */
+@media (max-width: 600px) {
+    .nav-menu {
+        display: none; /* En un entorno real aquí se implementaría un menú hamburguesa */
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .about-section,
+    .services-section,
+    .booking-section,
+    .testimonials-section {
+        padding: 5rem 0;
+    }
+    
+    .booking-form-container {
+        padding: 2rem 1.5rem;
+    }
+
+    .whatsapp-floating {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
