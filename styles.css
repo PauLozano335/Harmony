@@ -10,13 +10,13 @@
     --off-white: #f9f9f9;
     --soft-gray: #ececec;
     --muted-text: #666666;
-    --border-color: #e0e0e0;
+    --border-color: #e2e2e2;
     
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Inter', sans-serif;
     
     --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    --shadow-premium: 0 15px 35px rgba(0, 0, 0, 0.05);
+    --shadow-premium: 0 15px 40px rgba(0, 0, 0, 0.04);
 }
 
 /* Reset básico */
@@ -100,7 +100,7 @@ h2 {
 }
 
 /* ==========================================================================
-   2. NAVEGACIÓN STICKY
+   2. NAVEGACIÓN STICKY CON LOGO
    ========================================================================== */
 .navbar {
     position: fixed;
@@ -108,10 +108,10 @@ h2 {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 0.75rem 0; /* Un poco más estrecho para ajustar el logo */
 }
 
 .nav-container {
@@ -123,13 +123,16 @@ h2 {
     padding: 0 2rem;
 }
 
-.logo {
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: var(--dark-black);
+.logo-container {
+    display: flex;
+    align-items: center;
     text-decoration: none;
+}
+
+.nav-logo {
+    height: 45px; /* Altura ideal y equilibrada para el menú */
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-menu {
@@ -169,13 +172,14 @@ h2 {
 }
 
 /* ==========================================================================
-   3. HERO PRINCIPAL
+   3. HERO PRINCIPAL (NUEVA IMAGEN PREMIUM MÁS BONITA Y CONCEPTUAL)
    ========================================================================== */
 .hero-section {
     position: relative;
     height: 100vh;
     min-height: 600px;
-    background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1800');
+    /* Imagen premium de agua en calma / piedras zen / bienestar de lujo */
+    background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1800');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -185,21 +189,21 @@ h2 {
     padding: 0 1rem;
 }
 
-/* Capa oscura sofisticada sobre la imagen del Hero */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(17, 17, 17, 0.4), rgba(17, 17, 17, 0.6));
+    /* Filtro oscuro sutil y sofisticado para facilitar la lectura del título */
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 0.35), rgba(17, 17, 17, 0.55));
     z-index: 1;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 800px;
+    max-width: 850px;
     color: var(--pure-white);
 }
 
@@ -208,16 +212,16 @@ h2 {
     font-size: 3.8rem;
     font-weight: 400;
     margin-bottom: 1.5rem;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
     line-height: 1.2;
 }
 
 .hero-content p {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 300;
     letter-spacing: 1px;
     margin-bottom: 2.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
 }
 
 /* ==========================================================================
@@ -271,7 +275,7 @@ h2 {
 .service-card {
     background-color: var(--pure-white);
     padding: 3.5rem 2.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.02);
     box-shadow: var(--shadow-premium);
     transition: var(--transition-smooth);
     text-align: center;
@@ -299,7 +303,6 @@ h2 {
     line-height: 1.7;
 }
 
-/* Animación Hover de Tarjetas */
 .service-card:hover {
     transform: translateY(-8px);
     border-color: var(--primary-gold);
@@ -310,7 +313,7 @@ h2 {
 }
 
 /* ==========================================================================
-   6. RESERVA DE CITAS Y SECCIÓN BIZUM
+   6. NUEVA SECCIÓN DE CITAS CON SELECCIÓN DE CANAL DIRECTO
    ========================================================================== */
 .booking-section {
     padding: 8rem 0;
@@ -337,8 +340,7 @@ h2 {
     color: var(--pure-white);
     padding: 2.5rem;
     border-radius: 2px;
-    margin-bottom: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .bizum-icon {
@@ -380,86 +382,89 @@ h2 {
     font-size: 0.85rem;
 }
 
-/* Canales directos (Botones WhatsApp y Email) */
-.direct-channels {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.btn-whatsapp-direct {
-    background-color: #25D366;
-    color: var(--pure-white);
-}
-
-.btn-whatsapp-direct:hover {
-    background-color: #1ebd54;
-    transform: translateY(-2px);
-}
-
-.btn-email-direct {
-    background-color: transparent;
-    border: 1px solid var(--dark-black);
-    color: var(--dark-black);
-}
-
-.btn-email-direct:hover {
-    background-color: var(--dark-black);
-    color: var(--pure-white);
-    transform: translateY(-2px);
-}
-
-/* Formulario moderno */
-.booking-form-container {
+/* Contenedor del selector interactivo de WhatsApp o Gmail */
+.booking-selector-container {
     background-color: var(--off-white);
     padding: 3.5rem 2.5rem;
     box-shadow: var(--shadow-premium);
     border-top: 3px solid var(--primary-gold);
 }
 
-.modern-form .form-group {
-    margin-bottom: 1.5rem;
-}
-
-.modern-form label {
-    display: block;
-    font-size: 0.85rem;
+.selector-title {
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--dark-black);
 }
 
-.modern-form input,
-.modern-form select,
-.modern-form textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid var(--border-color);
+/* Tarjetas individuales de selección de canal */
+.booking-channel-card {
+    display: flex;
+    align-items: center;
     background-color: var(--pure-white);
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
     color: var(--dark-black);
+    border: 1px solid var(--border-color);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.booking-channel-card:last-child {
+    margin-bottom: 0;
+}
+
+.channel-icon {
+    font-size: 2rem;
+    margin-right: 1.5rem;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Colores de marca sutiles en los iconos */
+.whatsapp-channel .channel-icon {
+    color: #25D366;
+}
+
+.email-channel .channel-icon {
+    color: var(--primary-gold);
+}
+
+.channel-text h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+}
+
+.channel-text p {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    font-weight: 300;
+}
+
+.arrow-icon {
+    position: absolute;
+    right: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--muted-text);
     transition: var(--transition-smooth);
 }
 
-.modern-form input:focus,
-.modern-form select:focus,
-.modern-form textarea:focus {
-    outline: none;
+/* Efectos Hover de los botones de selección */
+.booking-channel-card:hover {
+    transform: translateX(5px);
     border-color: var(--primary-gold);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-.btn-submit {
-    background-color: var(--dark-black);
-    color: var(--pure-white);
-    width: 100%;
-    margin-top: 1rem;
-}
-
-.btn-submit:hover {
-    background-color: var(--primary-gold);
-    color: var(--pure-white);
+.booking-channel-card:hover .arrow-icon {
+    color: var(--primary-gold);
+    transform: translateX(3px);
 }
 
 /* ==========================================================================
@@ -480,7 +485,6 @@ h2 {
     background-color: var(--pure-white);
     padding: 3rem 2rem;
     box-shadow: var(--shadow-premium);
-    position: relative;
 }
 
 .stars {
@@ -506,7 +510,7 @@ h2 {
 }
 
 /* ==========================================================================
-   8. FOOTER
+   8. FOOTER CON LOGO
    ========================================================================== */
 .main-footer {
     background-color: var(--dark-black);
@@ -522,15 +526,17 @@ h2 {
     padding-bottom: 4rem;
 }
 
-.footer-brand h2 {
-    font-family: var(--font-serif);
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
+.footer-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
 }
 
 .footer-brand p {
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.5);
     font-weight: 300;
+    max-width: 300px;
 }
 
 .footer-contact h3,
@@ -570,7 +576,7 @@ h2 {
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.3);
     font-size: 0.85rem;
     font-weight: 300;
 }
@@ -605,8 +611,6 @@ h2 {
 /* ==========================================================================
    10. MEDIA QUERIES (DISEÑO RESPONSIVE)
    ========================================================================== */
-
-/* Tablets y ordenadores pequeños */
 @media (max-width: 992px) {
     h2 {
         font-size: 2rem;
@@ -623,7 +627,7 @@ h2 {
     }
     
     .about-image {
-        order: -1; /* Muestra la imagen arriba en móviles */
+        order: -1;
     }
 
     .footer-grid {
@@ -632,10 +636,9 @@ h2 {
     }
 }
 
-/* Teléfonos inteligentes */
 @media (max-width: 600px) {
     .nav-menu {
-        display: none; /* En un entorno real aquí se implementaría un menú hamburguesa */
+        display: none; /* En entornos productivos aquí se añadiría el menú hamburguesa */
     }
     
     .hero-content h1 {
@@ -653,7 +656,7 @@ h2 {
         padding: 5rem 0;
     }
     
-    .booking-form-container {
+    .booking-selector-container {
         padding: 2rem 1.5rem;
     }
 
