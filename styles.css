@@ -11,15 +11,14 @@
     --soft-gray: #ececec;
     --muted-text: #666666;
     --border-color: #e0e0e0;
-    
+     
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Inter', sans-serif;
-    
+     
     --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     --shadow-premium: 0 15px 35px rgba(0, 0, 0, 0.05);
 }
  
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -92,7 +91,7 @@ h2 {
 }
  
 .btn-primary:hover {
-    background-color: var(--dark-black);
+    background-color: var(--dark Black);
     color: var(--primary-gold);
     border-color: var(--primary-gold);
 }
@@ -167,16 +166,15 @@ h2 {
 }
  
 /* ==========================================================================
-   3. HERO PRINCIPAL — imagen de consulta moderna premium
+   3. HERO PRINCIPAL — PRIMERA IMAGEN ACTUALIZADA
    ========================================================================== */
 .hero-section {
     position: relative;
     height: 100vh;
     min-height: 600px;
-    /* Nueva imagen: clínica moderna, luz natural, ambiente de bienestar */
-    background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1800');
+    background-image: url('https://i.ibb.co/bMp4TjTR/IMG-20260526-WA0003.jpg');
     background-size: cover;
-    background-position: center 30%;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -307,7 +305,7 @@ h2 {
 }
  
 /* ==========================================================================
-   6. NUESTRAS INSTALACIONES  ← NUEVA SECCIÓN
+   6. NUESTRAS INSTALACIONES  
    ========================================================================== */
 .installations-section {
     padding: 8rem 0;
@@ -323,7 +321,6 @@ h2 {
     line-height: 1.8;
 }
  
-/* Grid asimétrico de instalaciones */
 .installations-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -331,7 +328,6 @@ h2 {
     gap: 2rem;
 }
  
-/* Tarjeta destacada — ocupa toda la primera fila */
 .install-card--large {
     grid-column: 1 / -1;
     display: grid;
@@ -355,7 +351,6 @@ h2 {
     background-color: var(--off-white);
 }
  
-/* Tarjeta ancha — ocupa toda la última fila */
 .install-card--wide {
     grid-column: 1 / -1;
     display: grid;
@@ -365,7 +360,7 @@ h2 {
     overflow: hidden;
     box-shadow: var(--shadow-premium);
     border: 1px solid rgba(0,0,0,0.04);
-    direction: rtl; /* imagen a la derecha */
+    direction: rtl;
 }
  
 .install-card--wide > * {
@@ -393,7 +388,6 @@ h2 {
     color: rgba(255,255,255,0.7);
 }
  
-/* Tarjetas normales (2 en la segunda fila) */
 .install-card:not(.install-card--large):not(.install-card--wide) {
     overflow: hidden;
     box-shadow: var(--shadow-premium);
@@ -415,7 +409,6 @@ h2 {
     background-color: var(--off-white);
 }
  
-/* Elementos comunes de las tarjetas */
 .install-img-wrap {
     position: relative;
     overflow: hidden;
@@ -462,7 +455,7 @@ h2 {
 }
  
 /* ==========================================================================
-   7. RESERVA DE CITAS
+   7. SECCIÓN RESERVA DE CITAS Y FORMULARIO MODERNO 
    ========================================================================== */
 .booking-section {
     padding: 8rem 0;
@@ -471,46 +464,45 @@ h2 {
  
 .booking-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     gap: 4rem;
     align-items: start;
 }
  
 .intro-booking {
     font-size: 1.1rem;
-    color: var(--muted-text);
-    margin-bottom: 2rem;
     font-weight: 300;
+    color: var(--muted-text);
+    margin-bottom: 2.5rem;
 }
  
 .bizum-card {
-    background-color: var(--light-black);
-    color: var(--pure-white);
+    background-color: var(--pure-white);
     padding: 2.5rem;
-    border-radius: 2px;
-    margin-bottom: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-left: 3px solid var(--primary-gold);
+    box-shadow: var(--shadow-premium);
+    margin-bottom: 3rem;
 }
  
 .bizum-icon {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--primary-gold);
     margin-bottom: 1rem;
 }
  
 .bizum-card h3 {
-    font-family: var(--font-serif);
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    letter-spacing: 0.5px;
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
 }
  
 .bizum-card p {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 1.5rem;
+    color: var(--muted-text);
     font-weight: 300;
+    margin-bottom: 1.25rem;
 }
  
 .bizum-notes {
@@ -518,15 +510,16 @@ h2 {
 }
  
 .bizum-notes li {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.7);
+    font-size: 0.88rem;
+    color: var(--dark-black);
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-weight: 400;
 }
  
-.bizum-notes i {
+.bizum-notes li i {
     color: var(--primary-gold);
     font-size: 0.85rem;
 }
@@ -543,53 +536,57 @@ h2 {
 }
  
 .btn-whatsapp-direct:hover {
-    background-color: #1ebd54;
+    background-color: #1ebd57;
     transform: translateY(-2px);
 }
  
 .btn-email-direct {
     background-color: transparent;
-    border: 1px solid var(--dark-black);
     color: var(--dark-black);
+    border-color: var(--border-color);
 }
  
 .btn-email-direct:hover {
     background-color: var(--dark-black);
     color: var(--pure-white);
-    transform: translateY(-2px);
+    border-color: var(--dark-black);
 }
  
+/* Estilos del Formulario Moderno */
 .booking-form-container {
     background-color: var(--pure-white);
-    padding: 3.5rem 2.5rem;
+    padding: 3.5rem 3rem;
     box-shadow: var(--shadow-premium);
-    border-top: 3px solid var(--primary-gold);
+    border: 1px solid rgba(0,0,0,0.02);
 }
  
 .modern-form .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
 }
  
 .modern-form label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 0.5rem;
     font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--dark-black);
 }
  
-.modern-form input,
+.modern-form input[type="text"],
+.modern-form input[type="tel"],
 .modern-form select,
 .modern-form textarea {
     width: 100%;
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    background-color: var(--pure-white);
+    padding: 1rem 1.25rem;
     font-family: var(--font-sans);
     font-size: 0.95rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--off-white);
     color: var(--dark-black);
     transition: var(--transition-smooth);
+    border-radius: 0;
 }
  
 .modern-form input:focus,
@@ -597,15 +594,15 @@ h2 {
 .modern-form textarea:focus {
     outline: none;
     border-color: var(--primary-gold);
+    background-color: var(--pure-white);
 }
  
 .btn-submit {
+    width: 100%;
     background-color: var(--dark-black);
     color: var(--pure-white);
-    width: 100%;
+    padding: 1.1rem;
     margin-top: 1rem;
-    border: none;
-    font-family: var(--font-sans);
 }
  
 .btn-submit:hover {
@@ -613,15 +610,16 @@ h2 {
     color: var(--pure-white);
 }
  
-/* Mensaje de éxito del formulario */
 .form-success {
-    margin-top: 1.25rem;
-    color: #2e7d32;
+    margin-top: 1.5rem;
+    color: #25D366;
     font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    font-weight: 500;
 }
  
 /* ==========================================================================
@@ -629,7 +627,7 @@ h2 {
    ========================================================================== */
 .testimonials-section {
     padding: 8rem 0;
-    background-color: var(--off-white);
+    background-color: var(--pure-white);
 }
  
 .testimonials-grid {
@@ -639,9 +637,10 @@ h2 {
 }
  
 .testimonial-card {
-    background-color: var(--pure-white);
-    padding: 3rem 2rem;
+    background-color: var(--off-white);
+    padding: 3rem 2.5rem;
     box-shadow: var(--shadow-premium);
+    position: relative;
 }
  
 .stars {
@@ -651,62 +650,65 @@ h2 {
 }
  
 .testimonial-text {
-    font-style: italic;
-    color: var(--muted-text);
-    margin-bottom: 1.5rem;
     font-size: 1rem;
+    color: var(--muted-text);
+    font-weight: 300;
+    font-style: italic;
     line-height: 1.7;
+    margin-bottom: 1.5rem;
 }
  
 .patient-name {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
-    color: var(--dark-black);
-    font-weight: 600;
     display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--dark-black);
 }
  
 /* ==========================================================================
-   9. FOOTER
+   9. FOOTER Y BOTÓN FLOTANTE
    ========================================================================== */
 .main-footer {
     background-color: var(--dark-black);
     color: var(--pure-white);
-    padding: 5rem 0 2rem 0;
+    padding: 5rem 0 2rem;
 }
  
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr 1fr;
     gap: 4rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 4rem;
+    margin-bottom: 4rem;
 }
  
 .footer-brand h2 {
-    font-family: var(--font-serif);
-    letter-spacing: 2px;
+    color: var(--pure-white);
     margin-bottom: 1rem;
 }
  
 .footer-brand p {
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.5);
     font-weight: 300;
+    font-size: 0.95rem;
 }
  
 .footer-contact h3,
 .footer-social h3 {
+    font-family: var(--font-sans);
     font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     margin-bottom: 1.5rem;
     color: var(--primary-gold);
 }
  
 .footer-contact p {
     color: rgba(255,255,255,0.7);
-    margin-bottom: 0.75rem;
     font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    font-weight: 300;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -719,112 +721,73 @@ h2 {
  
 .social-links a {
     color: rgba(255,255,255,0.7);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     transition: var(--transition-smooth);
 }
  
 .social-links a:hover {
     color: var(--primary-gold);
-    transform: translateY(-3px);
 }
  
 .footer-bottom {
-    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
     padding-top: 2rem;
-    color: rgba(255,255,255,0.4);
+    text-align: center;
+}
+ 
+.footer-bottom p {
     font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
     font-weight: 300;
 }
  
-/* ==========================================================================
-   10. BOTÓN FLOTANTE WHATSAPP
-   ========================================================================== */
 .whatsapp-floating {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
     background-color: #25D366;
-    color: var(--pure-white);
+    color: white;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    font-size: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     z-index: 999;
     text-decoration: none;
     transition: var(--transition-smooth);
 }
  
 .whatsapp-floating:hover {
-    transform: scale(1.1);
-    background-color: #1ebd54;
+    transform: scale(1.08);
+    background-color: #1ebd57;
 }
  
 /* ==========================================================================
-   11. MEDIA QUERIES
+   10. MEDIA QUERIES (RESPONSIVE)
    ========================================================================== */
 @media (max-width: 992px) {
-    h2 { font-size: 2rem; }
- 
-    .hero-content h1 { font-size: 2.8rem; }
- 
-    .about-grid,
-    .booking-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
- 
-    .about-image { order: -1; }
- 
-    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
- 
-    /* Instalaciones en móvil: todo en columna única */
-    .installations-grid {
+    .about-grid, .booking-grid, .installations-grid {
         grid-template-columns: 1fr;
     }
- 
-    .install-card--large,
-    .install-card--wide {
-        grid-column: 1;
+    .install-card--large, .install-card--wide {
         grid-template-columns: 1fr;
         direction: ltr;
     }
- 
     .install-card--large .install-img-wrap,
     .install-card--wide .install-img-wrap {
-        height: 240px;
+        height: 280px;
     }
- 
-    .install-card--large .install-text,
-    .install-card--wide .install-text {
-        padding: 2rem 1.5rem;
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
-}
- 
-@media (max-width: 600px) {
-    .nav-menu { display: none; }
- 
-    .hero-content h1 { font-size: 2.2rem; }
-    .hero-content p  { font-size: 1rem; }
- 
-    .about-section,
-    .services-section,
-    .installations-section,
-    .booking-section,
-    .testimonials-section {
-        padding: 5rem 0;
+    .hero-content h1 {
+        font-size: 2.8rem;
     }
- 
-    .booking-form-container { padding: 2rem 1.5rem; }
- 
-    .whatsapp-floating {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
+    .nav-menu {
+        display: none; /* Simplificado para móviles */
     }
 }
