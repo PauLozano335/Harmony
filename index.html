@@ -588,16 +588,11 @@ textarea:focus-visible {
 .installations-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
     gap: 2rem;
 }
 
 .install-card--large {
     grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 0;
-    align-items: stretch;
     overflow: hidden;
     box-shadow: var(--shadow-premium);
     border: 1px solid rgba(0,0,0,0.04);
@@ -607,70 +602,20 @@ textarea:focus-visible {
     height: 380px;
 }
 
-.install-card--large .install-text {
-    padding: 3rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--off-white);
-}
-
-.install-card--wide {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 0;
-    align-items: stretch;
-    overflow: hidden;
-    box-shadow: var(--shadow-premium);
-    border: 1px solid rgba(0,0,0,0.04);
-    direction: rtl;
-}
-
-.install-card--wide > * {
-    direction: ltr;
-}
-
-.install-card--wide .install-img-wrap {
-    height: 320px;
-}
-
-.install-card--wide .install-text {
-    padding: 3rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--light-black);
-    color: var(--pure-white);
-}
-
-.install-card--wide .install-text h3 {
-    color: var(--pure-white);
-}
-
-.install-card--wide .install-text p {
-    color: rgba(255,255,255,0.7);
-}
-
-.install-card:not(.install-card--large):not(.install-card--wide) {
+.install-card:not(.install-card--large) {
     overflow: hidden;
     box-shadow: var(--shadow-premium);
     border: 1px solid rgba(0,0,0,0.04);
     transition: var(--transition-smooth);
 }
 
-.install-card:not(.install-card--large):not(.install-card--wide):hover {
+.install-card:not(.install-card--large):hover {
     transform: translateY(-6px);
     border-color: var(--primary-gold);
 }
 
-.install-card:not(.install-card--large):not(.install-card--wide) .install-img-wrap {
+.install-card:not(.install-card--large) .install-img-wrap {
     height: 260px;
-}
-
-.install-card:not(.install-card--large):not(.install-card--wide) .install-text {
-    padding: 2rem;
-    background-color: var(--off-white);
 }
 
 .install-img-wrap {
@@ -688,32 +633,6 @@ textarea:focus-visible {
 
 .install-card:hover .install-img-wrap img {
     transform: scale(1.04);
-}
-
-.install-label {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(to right, rgba(201,164,76,0.92), rgba(176,141,59,0.85));
-    color: var(--pure-white);
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding: 0.55rem 1.1rem;
-}
-
-.install-text h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-    color: var(--dark-black);
-}
-
-.install-text p {
-    color: var(--muted-text);
-    font-size: 0.95rem;
-    font-weight: 300;
-    line-height: 1.7;
 }
 
 /* ==========================================================================
@@ -1129,14 +1048,6 @@ textarea:focus-visible {
     .about-grid, .booking-grid, .installations-grid {
         grid-template-columns: 1fr;
     }
-    .install-card--large, .install-card--wide {
-        grid-template-columns: 1fr;
-        direction: ltr;
-    }
-    .install-card--large .install-img-wrap,
-    .install-card--wide .install-img-wrap {
-        height: 280px;
-    }
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
@@ -1387,44 +1298,18 @@ textarea:focus-visible {
                 <div class="install-card install-card--large">
                     <div class="install-img-wrap">
                         <img src="https://i.ibb.co/bMp4TjTR/IMG-20260526-WA0003.jpg" alt="Recepción Harmony" loading="lazy" width="900" height="380">
-                        <div class="install-label">Recepción & Área de Bienvenida</div>
-                    </div>
-                    <div class="install-text">
-                        <h3>Un primer contacto que transmite confianza</h3>
-                        <p>Nuestra recepción combina materiales naturales, iluminación cálida y un diseño minimalista para que cada visita comience con serenidad y profesionalidad.</p>
                     </div>
                 </div>
 
                 <div class="install-card">
                     <div class="install-img-wrap">
                         <img src="https://i.ibb.co/s90pX5Dj/IMG-20260604-WA0003.jpg" alt="Consulta clínica Harmony" loading="lazy" width="600" height="260">
-                        <div class="install-label">Consultas Clínicas</div>
-                    </div>
-                    <div class="install-text">
-                        <h3>Confidencialidad y equipamiento de vanguardia</h3>
-                        <p>Cada consulta está equipada con tecnología de última generación, garantizando la máxima privacidad y un entorno óptimo para el diagnóstico y tratamiento.</p>
                     </div>
                 </div>
 
                 <div class="install-card">
                     <div class="install-img-wrap">
                         <img src="https://i.ibb.co/GvDwQpZL/IMG-20260526-WA0006.jpg" alt="Sala de fisioterapia Harmony" loading="lazy" width="600" height="260">
-                        <div class="install-label">Sala de Fisioterapia</div>
-                    </div>
-                    <div class="install-text">
-                        <h3>Espacio de recuperación y movimiento</h3>
-                        <p>Amplia sala dotada de camillas ergonómicas, equipos de electroterapia y un ambiente diseñado para favorecer la recuperación física y el bienestar corporal.</p>
-                    </div>
-                </div>
-
-                <div class="install-card install-card--wide">
-                    <div class="install-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&q=80&w=1200" alt="Sala de espera Harmony" loading="lazy" width="900" height="320">
-                        <div class="install-label">Sala de Espera Premium</div>
-                    </div>
-                    <div class="install-text">
-                        <h3>Comodidad mientras esperas</h3>
-                        <p>Nuestra sala de espera es un espacio de descanso real: mobiliario de diseño, luz natural y una atmósfera tranquila que convierte cada minuto de espera en un momento de pausa.</p>
                     </div>
                 </div>
 
