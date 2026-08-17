@@ -1,1182 +1,857 @@
- ==========================================================================
-   1. VARIABLES DE ESTILO Y CONFIGURACIÓN GENERAL
-   ========================================================================== */
-:root {
-    --primary-gold: #C9A44C;
-    --primary-gold-hover: #b08d3b;
-    --dark-black: #111111;
-    --light-black: #1a1a1a;
-    --pure-white: #ffffff;
-    --off-white: #f9f9f9;
-    --soft-gray: #ececec;
-    --muted-text: #666666;
-    --border-color: #e0e0e0;
-
-    /* Acentos por especialidad (uso sutil: eyebrow, iconos, bordes) */
-    --accent-logopedia: #B97455;
-    --accent-traumatologia: #3D5A73;
-    --accent-fisioterapia: #5C7A5C;
-    --accent-psiquiatria: #6B5B7A;
-    --accent-psicopedagogia: #AD8A2E;
-    --accent-nutricion: #7A8C5C;
-    --accent-psicologia: #5C7A8C;
-
-    --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Inter', sans-serif;
-
-    --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    --shadow-premium: 0 15px 35px rgba(0, 0, 0, 0.05);
-    --shadow-card-hover: 0 20px 45px rgba(0, 0, 0, 0.09);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-body {
-    font-family: var(--font-sans);
-    background-color: var(--pure-white);
-    color: var(--dark-black);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-img {
-    max-width: 100%;
-    image-rendering: -webkit-optimize-contrast;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.subtitle {
-    font-family: var(--font-sans);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.85rem;
-    color: var(--primary-gold);
-    display: block;
-    margin-bottom: 0.75rem;
-    font-weight: 500;
-}
-
-h1, h2, h3 {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    letter-spacing: -0.5px;
-}
-
-h2 {
-    font-size: 2.5rem;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem 2.25rem;
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-decoration: none;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-}
-
-.btn-primary {
-    background-color: var(--primary-gold);
-    color: var(--pure-white);
-}
-
-.btn-primary:hover,
-.btn-primary:focus-visible {
-    background-color: var(--dark-black);
-    color: var(--primary-gold);
-    border-color: var(--primary-gold);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: var(--pure-white);
-    border-color: rgba(255,255,255,0.5);
-}
-
-.btn-outline:hover,
-.btn-outline:focus-visible {
-    background-color: var(--pure-white);
-    color: var(--dark-black);
-    border-color: var(--pure-white);
-}
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline: 2px solid var(--primary-gold);
-    outline-offset: 2px;
-}
-
-/* ==========================================================================
-   2. NAVEGACIÓN STICKY
-   ========================================================================== */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 1.25rem 0;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    gap: 1.5rem;
-}
-
-.logo {
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: var(--dark-black);
-    text-decoration: none;
-    flex-shrink: 0;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 1.6rem;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-
-.nav-menu a {
-    text-decoration: none;
-    color: var(--dark-black);
-    font-size: 0.78rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: var(--transition-smooth);
-    position: relative;
-    white-space: nowrap;
-}
-
-.nav-menu a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--primary-gold);
-    transition: var(--transition-smooth);
-}
-
-.nav-menu a:hover,
-.nav-menu a.is-active {
-    color: var(--primary-gold);
-}
-
-.nav-menu a:hover::after,
-.nav-menu a.is-active::after {
-    width: 100%;
-}
-
-.nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.4rem;
-    color: var(--dark-black);
-    cursor: pointer;
-}
-
-/* ==========================================================================
-   3. HERO PRINCIPAL (Home)
-   ========================================================================== */
-.hero-section {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 1rem;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(17, 17, 17, 0.4), rgba(17, 17, 17, 0.68));
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 820px;
-    color: var(--pure-white);
-}
-
-.hero-content h1 {
-    font-size: 3.6rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.hero-content p {
-    font-size: 1.25rem;
-    font-weight: 300;
-    letter-spacing: 1px;
-    margin-bottom: 2.5rem;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* ==========================================================================
-   3B. HERO DE SUBPÁGINAS (especialidades)
-   ========================================================================== */
-.page-hero {
-    position: relative;
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    padding: 11rem 0 5rem;
-    background-color: var(--dark-black);
-    overflow: hidden;
-}
-
-.page-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.28;
-    background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg');
-}
-
-.page-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.75) 55%, rgba(17,17,17,0.92) 100%);
-}
-
-.page-hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 760px;
-}
-
-.page-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--accent-color, var(--primary-gold));
-    margin-bottom: 1.5rem;
-}
-
-.page-eyebrow::before {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background-color: var(--accent-color, var(--primary-gold));
-}
-
-.page-hero h1 {
-    color: var(--pure-white);
-    font-size: 2.8rem;
-    line-height: 1.25;
-    margin-bottom: 1.5rem;
-}
-
-.page-hero-lede {
-    color: rgba(255,255,255,0.75);
-    font-size: 1.05rem;
-    font-weight: 300;
-    max-width: 600px;
-}
-
-/* Bloque hero-frase llamativo dentro de página de especialidad */
-.statement-block {
-    padding: 5rem 0;
-    background-color: var(--light-black);
-    text-align: center;
-}
-
-.statement-block blockquote {
-    font-family: var(--font-serif);
-    font-size: clamp(1.6rem, 3vw, 2.3rem);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--pure-white);
-    max-width: 820px;
-    margin: 0 auto;
-    line-height: 1.45;
-    position: relative;
-}
-
-.statement-block blockquote::before {
-    content: '';
-    display: block;
-    width: 48px;
-    height: 2px;
-    background-color: var(--accent-color, var(--primary-gold));
-    margin: 0 auto 1.75rem;
-}
-
-/* ==========================================================================
-   4. SOBRE NOSOTROS / INTRO DE PÁGINA
-   ========================================================================== */
-.about-section,
-.intro-section {
-    padding: 7rem 0;
-    background-color: var(--pure-white);
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.about-text h2 {
-    margin-bottom: 2rem;
-}
-
-.about-text p,
-.intro-text p {
-    color: var(--muted-text);
-    margin-bottom: 1.5rem;
-    font-size: 1.05rem;
-    font-weight: 300;
-}
-
-.about-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    box-shadow: var(--shadow-premium);
-    border-radius: 2px;
-}
-
-.intro-section .intro-text {
-    max-width: 760px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.intro-section .intro-text h2 {
-    margin-bottom: 1.75rem;
-}
-
-/* ==========================================================================
-   5. SERVICIOS (Home)
-   ========================================================================== */
-.services-section {
-    padding: 7rem 0;
-    background-color: var(--off-white);
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-}
-
-.service-card {
-    background-color: var(--pure-white);
-    padding: 3.25rem 2.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    box-shadow: var(--shadow-premium);
-    transition: var(--transition-smooth);
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.service-icon {
-    font-size: 2.2rem;
-    color: var(--primary-gold);
-    margin-bottom: 1.75rem;
-    transition: var(--transition-smooth);
-}
-
-.service-card h3 {
-    font-size: 1.35rem;
-    margin-bottom: 1rem;
-    color: var(--dark-black);
-}
-
-.service-card p {
-    color: var(--muted-text);
-    font-size: 0.95rem;
-    font-weight: 300;
-    line-height: 1.7;
-}
-
-.service-card .service-link {
-    display: inline-block;
-    margin-top: 1.25rem;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: var(--primary-gold);
-}
-
-.service-card:hover,
-.service-card:focus-visible {
-    transform: translateY(-8px);
-    border-color: var(--primary-gold);
-    box-shadow: var(--shadow-card-hover);
-}
-
-.service-card:hover .service-icon {
-    transform: scale(1.1);
-}
-
-/* ==========================================================================
-   5B. GRID DE ESPECIALIDADES DESTACADAS (subpáginas)
-   ========================================================================== */
-.specialties-section {
-    padding: 7rem 0;
-    background-color: var(--off-white);
-}
-
-.specialties-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 2rem;
-}
-
-.specialty-card {
-    background-color: var(--pure-white);
-    padding: 2.75rem 2.25rem;
-    border: 1px solid rgba(0,0,0,0.04);
-    border-top: 3px solid var(--accent-color, var(--primary-gold));
-    box-shadow: var(--shadow-premium);
-    transition: var(--transition-smooth);
-}
-
-.specialty-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-card-hover);
-}
-
-.specialty-card .specialty-icon {
-    font-size: 1.8rem;
-    color: var(--accent-color, var(--primary-gold));
-    margin-bottom: 1.25rem;
-}
-
-.specialty-card h3 {
-    font-size: 1.15rem;
-    margin-bottom: 0.6rem;
-    color: var(--dark-black);
-}
-
-.specialty-card p {
-    font-size: 0.9rem;
-    color: var(--muted-text);
-    font-weight: 300;
-    line-height: 1.6;
-}
-
-/* Tarjeta destacada (diferenciador, ej. inglés) */
-.specialty-card--highlight {
-    background-color: var(--dark-black);
-    border-top-color: var(--accent-color, var(--primary-gold));
-    position: relative;
-}
-
-.specialty-card--highlight::after {
-    content: 'Diferencial';
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: var(--accent-color, var(--primary-gold));
-    border: 1px solid var(--accent-color, var(--primary-gold));
-    padding: 0.25rem 0.55rem;
-}
-
-.specialty-card--highlight h3,
-.specialty-card--highlight p {
-    color: var(--pure-white);
-}
-
-.specialty-card--highlight p {
-    color: rgba(255,255,255,0.7);
-}
-
-/* ==========================================================================
-   6. NUESTRAS INSTALACIONES (Home)
-   ========================================================================== */
-.installations-section {
-    padding: 7rem 0;
-    background-color: var(--pure-white);
-}
-
-.section-intro {
-    max-width: 620px;
-    margin: 1.25rem auto 0;
-    color: var(--muted-text);
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.8;
-}
-
-.installations-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-}
-
-.install-card--large {
-    grid-column: 1 / -1;
-    overflow: hidden;
-    box-shadow: var(--shadow-premium);
-    border: 1px solid rgba(0,0,0,0.04);
-}
-
-.install-card--large .install-img-wrap {
-    height: 380px;
-}
-
-.install-card:not(.install-card--large) {
-    overflow: hidden;
-    box-shadow: var(--shadow-premium);
-    border: 1px solid rgba(0,0,0,0.04);
-    transition: var(--transition-smooth);
-}
-
-.install-card:not(.install-card--large):hover {
-    transform: translateY(-6px);
-    border-color: var(--primary-gold);
-}
-
-.install-card:not(.install-card--large) .install-img-wrap {
-    height: 260px;
-}
-
-.install-img-wrap {
-    position: relative;
-    overflow: hidden;
-}
-
-.install-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.install-card:hover .install-img-wrap img {
-    transform: scale(1.04);
-}
-
-/* ==========================================================================
-   6B. BLOQUES VISUALES MODERNOS (listas de patologías / condiciones)
-   ========================================================================== */
-.condition-tags-section {
-    padding: 6rem 0;
-    background-color: var(--pure-white);
-}
-
-.condition-tags-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.25rem;
-}
-
-.condition-tag {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem 1.5rem;
-    background-color: var(--off-white);
-    border-left: 3px solid var(--accent-color, var(--primary-gold));
-    transition: var(--transition-smooth);
-}
-
-.condition-tag:hover {
-    background-color: var(--pure-white);
-    box-shadow: var(--shadow-premium);
-    transform: translateX(4px);
-}
-
-.condition-tag i {
-    color: var(--accent-color, var(--primary-gold));
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
-.condition-tag span {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--dark-black);
-}
-
-/* ==========================================================================
-   7. SECCIÓN RESERVA DE CITAS Y FORMULARIO MODERNO
-   ========================================================================== */
-.booking-section {
-    padding: 7rem 0;
-    background-color: var(--off-white);
-}
-
-.booking-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 4rem;
-    align-items: start;
-}
-
-.intro-booking {
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: var(--muted-text);
-    margin-bottom: 2.5rem;
-}
-
-.bizum-card {
-    background-color: var(--pure-white);
-    padding: 2.5rem;
-    border-left: 3px solid var(--primary-gold);
-    box-shadow: var(--shadow-premium);
-    margin-bottom: 3rem;
-}
-
-.bizum-icon {
-    font-size: 1.8rem;
-    color: var(--primary-gold);
-    margin-bottom: 1rem;
-}
-
-.bizum-card h3 {
-    font-family: var(--font-sans);
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.75rem;
-}
-
-.bizum-card p {
-    font-size: 0.95rem;
-    color: var(--muted-text);
-    font-weight: 300;
-    margin-bottom: 1.25rem;
-}
-
-.bizum-notes {
-    list-style: none;
-}
-
-.bizum-notes li {
-    font-size: 0.88rem;
-    color: var(--dark-black);
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 400;
-}
-
-.bizum-notes li i {
-    color: var(--primary-gold);
-    font-size: 0.85rem;
-}
-
-.direct-channels {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.btn-whatsapp-direct {
-    background-color: #25D366;
-    color: var(--pure-white);
-}
-
-.btn-whatsapp-direct:hover,
-.btn-whatsapp-direct:focus-visible {
-    background-color: #1ebd57;
-    transform: translateY(-2px);
-}
-
-.btn-email-direct {
-    background-color: transparent;
-    color: var(--dark-black);
-    border-color: var(--border-color);
-}
-
-.btn-email-direct:hover,
-.btn-email-direct:focus-visible {
-    background-color: var(--dark-black);
-    color: var(--pure-white);
-    border-color: var(--dark-black);
-}
-
-/* Estilos del Formulario Moderno */
-.booking-form-container {
-    background-color: var(--pure-white);
-    padding: 3.5rem 3rem;
-    box-shadow: var(--shadow-premium);
-    border: 1px solid rgba(0,0,0,0.02);
-}
-
-.modern-form .form-group {
-    margin-bottom: 1.75rem;
-}
-
-.modern-form label {
-    display: block;
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    color: var(--dark-black);
-}
-
-.modern-form input[type="text"],
-.modern-form input[type="tel"],
-.modern-form select,
-.modern-form textarea {
-    width: 100%;
-    padding: 1rem 1.25rem;
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    border: 1px solid var(--border-color);
-    background-color: var(--off-white);
-    color: var(--dark-black);
-    transition: var(--transition-smooth);
-    border-radius: 0;
-}
-
-.modern-form input:focus,
-.modern-form select:focus,
-.modern-form textarea:focus {
-    outline: none;
-    border-color: var(--primary-gold);
-    background-color: var(--pure-white);
-}
-
-.btn-submit {
-    width: 100%;
-    background-color: var(--dark-black);
-    color: var(--pure-white);
-    padding: 1.1rem;
-    margin-top: 1rem;
-}
-
-.btn-submit:hover,
-.btn-submit:focus-visible {
-    background-color: var(--primary-gold);
-    color: var(--pure-white);
-}
-
-.form-success {
-    margin-top: 1.5rem;
-    color: #25D366;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-/* CTA fijo de cierre de página (subpáginas) */
-.cta-banner {
-    padding: 5rem 0;
-    background-color: var(--dark-black);
-    text-align: center;
-}
-
-.cta-banner h2 {
-    color: var(--pure-white);
-    margin-bottom: 1.25rem;
-    font-size: 2.1rem;
-}
-
-.cta-banner p {
-    color: rgba(255,255,255,0.7);
-    font-weight: 300;
-    margin-bottom: 2.25rem;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.cta-banner-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* ==========================================================================
-   8. TESTIMONIOS
-   ========================================================================== */
-.testimonials-section {
-    padding: 7rem 0;
-    background-color: var(--pure-white);
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-}
-
-.testimonial-card {
-    background-color: var(--off-white);
-    padding: 3rem 2.5rem;
-    box-shadow: var(--shadow-premium);
-    position: relative;
-}
-
-.stars {
-    color: var(--primary-gold);
-    font-size: 0.85rem;
-    margin-bottom: 1.25rem;
-}
-
-.testimonial-text {
-    font-size: 1rem;
-    color: var(--muted-text);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.patient-name {
-    display: block;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-    color: var(--dark-black);
-}
-
-/* ==========================================================================
-   9. FOOTER Y BOTÓN FLOTANTE
-   ========================================================================== */
-.main-footer {
-    background-color: var(--dark-black);
-    color: var(--pure-white);
-    padding: 5rem 0 2rem;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
-}
-
-.footer-brand h2 {
-    color: var(--pure-white);
-    margin-bottom: 1rem;
-}
-
-.footer-brand p {
-    color: rgba(255,255,255,0.5);
-    font-weight: 300;
-    font-size: 0.95rem;
-}
-
-.footer-links h3,
-.footer-contact h3,
-.footer-social h3 {
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 1.5rem;
-    color: var(--primary-gold);
-}
-
-.footer-links ul {
-    list-style: none;
-}
-
-.footer-links li {
-    margin-bottom: 0.65rem;
-}
-
-.footer-links a {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 300;
-    transition: var(--transition-smooth);
-}
-
-.footer-links a:hover {
-    color: var(--primary-gold);
-}
-
-.footer-contact p {
-    color: rgba(255,255,255,0.7);
-    font-size: 0.95rem;
-    margin-bottom: 0.75rem;
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 1.25rem;
-}
-
-.social-links a {
-    color: rgba(255,255,255,0.7);
-    font-size: 1.1rem;
-    transition: var(--transition-smooth);
-}
-
-.social-links a:hover {
-    color: var(--primary-gold);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 2rem;
-    text-align: center;
-}
-
-.footer-bottom p {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.4);
-    font-weight: 300;
-}
-
-.whatsapp-floating {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: #25D366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 999;
-    text-decoration: none;
-    transition: var(--transition-smooth);
-}
-
-.whatsapp-floating:hover {
-    transform: scale(1.08);
-    background-color: #1ebd57;
-}
-
-/* ==========================================================================
-   10. MEDIA QUERIES (RESPONSIVE)
-   ========================================================================== */
-@media (max-width: 992px) {
-    .about-grid, .booking-grid, .installations-grid {
-        grid-template-columns: 1fr;
-    }
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    .hero-content h1 {
-        font-size: 2.6rem;
-    }
-    .page-hero h1 {
-        font-size: 2.3rem;
-    }
-    .nav-menu {
-        position: fixed;
-        top: 72px;
-        left: 0;
-        right: 0;
-        background-color: var(--pure-white);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        padding: 0.5rem 2rem 1rem;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.35s ease;
-        border-bottom: 1px solid var(--border-color);
-    }
-    .nav-menu.is-open {
-        max-height: 70vh;
-        overflow-y: auto;
-    }
-    .nav-menu li {
-        width: 100%;
-        padding: 0.85rem 0;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-    .nav-toggle {
-        display: block;
-    }
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 0 1.25rem;
-    }
-    h2 {
-        font-size: 2rem;
-    }
-    .hero-content h1 {
-        font-size: 2.1rem;
-    }
-    .page-hero {
-        padding: 9rem 0 4rem;
-        min-height: 50vh;
-    }
-    .page-hero h1 {
-        font-size: 1.9rem;
-    }
-    .service-card,
-    .specialty-card,
-    .bizum-card,
-    .booking-form-container {
-        padding: 2.25rem 1.5rem;
-    }
-    .statement-block blockquote {
-        font-size: 1.4rem;
-    }
-    .cta-banner h2 {
-        font-size: 1.6rem;
-    }
-}
-
-/* Respeto a usuarios con preferencia de movimiento reducido */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-    }
-}
-
-/* ==========================================================================
-   11. ACENTOS POR SECCION (version de pagina unica)
-   En el sitio multipagina esto se fijaba en :root de cada archivo.
-   Aqui cada section con id hereda su propio acento a sus hijos.
-   ========================================================================== */
-#logopedia { --accent-color: var(--accent-logopedia); }
-#traumatologia { --accent-color: var(--accent-traumatologia); }
-#fisioterapia-page { --accent-color: var(--accent-fisioterapia); }
-#psiquiatria { --accent-color: var(--accent-psiquiatria); }
-#psicopedagogia { --accent-color: var(--accent-psicopedagogia); }
-#nutricion { --accent-color: var(--accent-nutricion); }
-#psicologia { --accent-color: var(--accent-psicologia); }
-
-.page-hero h2 {
-    color: var(--pure-white);
-    font-size: 2.8rem;
-    line-height: 1.25;
-    margin-bottom: 1.5rem;
-}
-
-.intro-section h3 {
-    font-size: 2rem;
-    margin-bottom: 1.75rem;
-}
-
-.specialties-section .section-header h3,
-.condition-tags-section .section-header h3 {
-    font-family: var(--font-serif);
-    font-size: 2.2rem;
-    font-weight: 400;
-}
-
-.cta-banner h3 {
-    color: var(--pure-white);
-    margin-bottom: 1.25rem;
-    font-size: 2.1rem;
-}
-
-#logopedia.page-hero::before { background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg'); }
-#traumatologia.page-hero::before { background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg'); }
-#fisioterapia-page.page-hero::before { background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg'); }
-#psiquiatria.page-hero::before { background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg'); }
-#psicopedagogia.page-hero::before { background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg'); }
-#nutricion.page-hero::before { background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg'); }
-#psicologia.page-hero::before { background-image: url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg'); }
-
-/* ==========================================================================
-   IMAGEN 1 EN BLOQUES OSCUROS
-   ========================================================================== */
-.statement-block,
-.cta-banner,
-.main-footer {
-    position: relative;
-    background-image: linear-gradient(rgba(17,17,17,0.88), rgba(17,17,17,0.92)), url('https://i.ibb.co/Xf4qg91r/Whats-App-Image-2026-08-17-at-17-53-00.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: scroll;
-}
-
-.statement-block > *,
-.cta-banner > *,
-.main-footer > * {
-    position: relative;
-    z-index: 1;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony | Clínica Integral de Salud</title>
+    <meta name="description" content="Harmony es una clínica integral de salud con un equipo multidisciplinar de Logopedia, Traumatología, Fisioterapia, Psicopedagogía, Nutrición y Psicología.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#inicio" class="logo">HARMONY</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#logopedia">Logopedia</a></li>
+                <li><a href="#traumatologia">Traumatología</a></li>
+                <li><a href="#fisioterapia-page">Fisioterapia</a></li>
+                <li><a href="#psiquiatria">Psiquiatría</a></li>
+                <li><a href="#psicopedagogia">Psicopedagogía</a></li>
+                <li><a href="#nutricion">Nutrición</a></li>
+                <li><a href="#psicologia">Psicología</a></li>
+                <li><a href="#reserva">Reservas</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="inicio" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Un equipo multidisciplinar para cuidar de tu salud de forma integral.</h1>
+            <p>Logopedia, Traumatología, Fisioterapia, Psicopedagogía, Nutrición y Psicología bajo un mismo techo.</p>
+            <a href="#reserva" class="btn btn-primary">Reservar cita</a>
+        </div>
+    </header>
+
+    <section id="nosotros" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span class="subtitle">Bienvenido a la excelencia</span>
+                    <h2>Atención integral personalizada para tu salud</h2>
+                    <p>En Harmony entendemos la salud como un estado de equilibrio completo. Ofrecemos un enfoque clínico interdisciplinar diseñado exclusivamente para mejorar la salud física, mental y emocional de cada paciente.</p>
+                    <p>Nuestro espacio está pensado para ofrecerte calma y la máxima confidencialidad, combinando la última vanguardia profesional con un trato profundamente humano y sofisticado.</p>
+                </div>
+                <div class="about-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Nuestras Especialidades</span>
+                <h2>Servicios Médicos y Sanitarios</h2>
+            </div>
+
+            <div class="services-grid">
+                <a href="#logopedia" class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-comment-medical"></i>
+                    </div>
+                    <h3>Logopedia</h3>
+                    <p>Especialistas en lenguaje, voz, deglución, terapia miofuncional y rehabilitación de las funciones orales en niños y adultos.</p>
+                    <span class="service-link">Ver especialidad <i class="fa-solid fa-arrow-right-long"></i></span>
+                </a>
+
+                <a href="#traumatologia" class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-bone"></i>
+                    </div>
+                    <h3>Traumatología</h3>
+                    <p>Diagnóstico y tratamiento especializado de lesiones musculoesqueléticas, patologías articulares y traumatología deportiva.</p>
+                    <span class="service-link">Ver especialidad <i class="fa-solid fa-arrow-right-long"></i></span>
+                </a>
+
+                <a href="#fisioterapia-page" class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-hand-holding-medical"></i>
+                    </div>
+                    <h3>Fisioterapia</h3>
+                    <p>Te acompañamos en la recuperación del dolor y la mejora de tu movilidad mediante fisioterapia, terapia vertebral y abordaje manual personalizado.</p>
+                    <span class="service-link">Ver especialidad <i class="fa-solid fa-arrow-right-long"></i></span>
+                </a>
+
+                <a href="#psicopedagogia" class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-children"></i>
+                    </div>
+                    <h3>Psicopedagogía</h3>
+                    <p>Acompañamos a niños, adolescentes y familias para comprender las dificultades de aprendizaje, potenciar sus capacidades y favorecer su desarrollo académico y personal.</p>
+                    <span class="service-link">Ver especialidad <i class="fa-solid fa-arrow-right-long"></i></span>
+                </a>
+
+                <a href="#nutricion" class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-apple-whole"></i>
+                    </div>
+                    <h3>Nutrición</h3>
+                    <p>Te acompañamos en cada etapa de la vida con un enfoque especializado en nutrición deportiva, salud hormonal, bienestar digestivo y alimentación infantil.</p>
+                    <span class="service-link">Ver especialidad <i class="fa-solid fa-arrow-right-long"></i></span>
+                </a>
+
+                <a href="#psicologia" class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3>Psicología</h3>
+                    <p>Cuidar tu salud mental también es cuidar tu bienestar. Te acompañamos para que encuentres herramientas, equilibrio y confianza para afrontar cada etapa de tu vida.</p>
+                    <span class="service-link">Ver especialidad <i class="fa-solid fa-arrow-right-long"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="instalaciones" class="installations-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Espacios Harmony</span>
+                <h2>Nuestras Instalaciones</h2>
+                <p class="section-intro">Cada rincón de Harmony ha sido diseñado con un único propósito: que te sientas en calma, seguro y bien cuidado desde el primer momento.</p>
+            </div>
+
+            <div class="installations-grid">
+
+                <div class="install-card install-card--large">
+                    <div class="install-img-wrap">
+                        <img src="https://i.ibb.co/gLj0tC6f/Whats-App-Image-2026-08-17-at-17-53-14.jpg" alt="Recepción Harmony" loading="lazy" width="900" height="380">
+                    </div>
+                </div>
+
+                <div class="install-card">
+                    <div class="install-img-wrap">
+                        <img src="https://i.ibb.co/nqrGtQXb/Whats-App-Image-2026-08-17-at-17-53-15.jpg" alt="Consulta clínica Harmony" loading="lazy" width="600" height="260">
+                    </div>
+                </div>
+
+                <div class="install-card">
+                    <div class="install-img-wrap">
+                        <img src="https://i.ibb.co/bMfSQcLv/Whats-App-Image-2026-08-17-at-17-53-15-1.jpg" alt="Sala de fisioterapia Harmony" loading="lazy" width="600" height="260">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="logopedia" class="page-hero">
+        <div class="container page-hero-content">
+            <span class="page-eyebrow">Logopedia Clínica Advanced</span>
+            <h2>Mucho más que hablar bien: ayudarte a respirar, comunicarte y vivir mejor.</h2>
+            <p class="page-hero-lede">Evaluación, diagnóstico y tratamiento de los trastornos de la comunicación, el lenguaje, el habla y las funciones orofaciales, en niños y adultos.</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-text">
+                <span class="subtitle">Nuestro enfoque</span>
+                <h3>Logopedia integral para cada etapa de la vida</h3>
+                <p>En Harmony entendemos la logopedia como una disciplina que va mucho más allá de la corrección del habla. Trabajamos las funciones orofaciales en su conjunto: respiración, deglución, tono muscular y voz, con un abordaje clínico riguroso y profundamente personalizado.</p>
+                <p>Nuestro equipo combina formación en terapia miofuncional, motricidad orofacial y rehabilitación postquirúrgica para ofrecer un tratamiento completo, ya sea que el motivo de consulta sea un frenillo lingual, una disfonía, bruxismo o una alteración en el desarrollo del lenguaje infantil.</p>
+                <p>Cada paciente recibe una valoración exhaustiva inicial y un plan de tratamiento adaptado a sus necesidades específicas, con seguimiento continuo y coordinación con otros especialistas de la clínica cuando es necesario.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialties-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Especialidades Destacadas</span>
+                <h3>Áreas de Tratamiento en Logopedia</h3>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-face-meh"></i></div>
+                    <h3>Terapia Miofuncional Orofacial</h3>
+                    <p>Reeducación de la musculatura orofacial para corregir patrones de respiración, masticación y deglución alterados.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-scissors"></i></div>
+                    <h3>Frenillo Lingual y Frenectomía</h3>
+                    <p>Valoración funcional del frenillo lingual y acompañamiento terapéutico antes y después de la frenectomía.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                    <h3>Voz y Disfonías</h3>
+                    <p>Evaluación y rehabilitación vocal para disfonías funcionales, profesionales de la voz y alteraciones laríngeas.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-tooth"></i></div>
+                    <h3>Bruxismo y Dolor Orofacial</h3>
+                    <p>Abordaje terapéutico del bruxismo y del dolor orofacial mediante técnicas de relajación muscular y reeducación postural.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-lungs"></i></div>
+                    <h3>Deglución Atípica y Respiración Oral</h3>
+                    <p>Corrección de patrones de deglución atípica y reeducación de la respiración nasal frente a la respiración oral crónica.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-head-side-cough"></i></div>
+                    <h3>Rehabilitación Respiración Postcirugía ORL</h3>
+                    <p>Programas de rehabilitación funcional tras cirugías otorrinolaringológicas que afectan a la respiración y deglución.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="statement-block">
+        <div class="container">
+            <blockquote>Mucho más que hablar bien: ayudarte a respirar, comunicarte y vivir mejor.</blockquote>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h3>¿Empezamos tu valoración logopédica?</h3>
+            <p>Reserva tu primera cita y nuestro equipo diseñará un plan de tratamiento adaptado a ti.</p>
+            <div class="cta-banner-actions">
+                <a href="#reserva" class="btn btn-primary">Reservar cita</a>
+                <a href="https://wa.me/34628675292" target="_blank" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Escríbenos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="traumatologia" class="page-hero">
+        <div class="container page-hero-content">
+            <span class="page-eyebrow">Traumatología y Cirugía Ortopédica</span>
+            <h2>Diagnóstico preciso, tratamiento personalizado y acompañamiento experto para que vuelvas a moverte sin límites.</h2>
+            <p class="page-hero-lede">Evaluación especializada de lesiones musculoesqueléticas, patologías articulares y traumatología deportiva, con un abordaje médico-quirúrgico coordinado.</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-text">
+                <span class="subtitle">Nuestro enfoque</span>
+                <h3>Un equipo especializado en el sistema musculoesquelético</h3>
+                <p>En Harmony abordamos la traumatología desde el diagnóstico preciso hasta la recuperación funcional completa. Nuestro equipo de cirugía ortopédica y traumatología evalúa cada caso de forma individualizada, combinando técnicas diagnósticas avanzadas con un trato cercano y un seguimiento cercano de cada paciente.</p>
+                <p>Atendemos tanto lesiones agudas como patologías crónicas del aparato locomotor, con especial atención a la traumatología deportiva y a los procesos de segunda opinión médica para quienes buscan confirmar un diagnóstico o explorar alternativas de tratamiento.</p>
+                <p>Trabajamos de forma coordinada con el departamento de fisioterapia de la clínica para garantizar una recuperación funcional integral, desde la fase aguda hasta la vuelta completa a la actividad.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialties-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Especialidades Destacadas</span>
+                <h3>Áreas de Tratamiento en Traumatología</h3>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-bone"></i></div>
+                    <h3>Rodilla</h3>
+                    <p>Diagnóstico y tratamiento de lesiones ligamentosas, meniscales y degenerativas de la articulación de la rodilla.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-shoe-prints"></i></div>
+                    <h3>Pie y Tobillo</h3>
+                    <p>Tratamiento especializado de esguinces, fracturas, deformidades y patologías crónicas del pie y el tobillo.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-person-running"></i></div>
+                    <h3>Traumatología Deportiva</h3>
+                    <p>Prevención, diagnóstico y tratamiento de lesiones derivadas de la práctica deportiva, con enfoque en la vuelta segura al deporte.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-syringe"></i></div>
+                    <h3>Cirugía Ortopédica</h3>
+                    <p>Intervenciones quirúrgicas especializadas para la corrección y reparación de lesiones del sistema musculoesquelético.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h3>Segunda Opinión Médica</h3>
+                    <p>Revisión experta de diagnósticos y planes de tratamiento previos para ofrecer una valoración independiente y actualizada.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                    <h3>Recuperación Funcional</h3>
+                    <p>Programas de recuperación progresiva orientados a restablecer la movilidad, la fuerza y la funcionalidad completa.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-hand-dots"></i></div>
+                    <h3>Dolor Articular y Tendinoso</h3>
+                    <p>Evaluación y tratamiento del dolor crónico en articulaciones y tendones para mejorar la calidad de vida del paciente.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-people-arrows"></i></div>
+                    <h3>Trabajo Coordinado con Fisioterapia</h3>
+                    <p>Protocolos conjuntos entre traumatología y fisioterapia que aceleran y refuerzan la recuperación funcional del paciente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h3>Vuelve a moverte con confianza</h3>
+            <p>Solicita tu valoración con nuestro equipo de traumatología y diseña, junto a ellos, tu plan de recuperación.</p>
+            <div class="cta-banner-actions">
+                <a href="#reserva" class="btn btn-primary">Reservar cita</a>
+                <a href="https://wa.me/34628675292" target="_blank" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Escríbenos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="fisioterapia-page" class="page-hero">
+        <div class="container page-hero-content">
+            <span class="page-eyebrow">Fisioterapia</span>
+            <h2>Te acompañamos en la recuperación del dolor y la mejora de tu movilidad.</h2>
+            <p class="page-hero-lede">Fisioterapia, terapia vertebral y abordaje manual personalizado para recuperar tu movimiento sin dolor.</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-text">
+                <span class="subtitle">Nuestro enfoque</span>
+                <h3>Fisioterapia personalizada, de la valoración a la recuperación</h3>
+                <p>En Harmony entendemos que cada dolor tiene una historia distinta. Por eso, cada tratamiento de fisioterapia comienza con una valoración exhaustiva de la postura, la movilidad y el origen del dolor, antes de diseñar un plan terapéutico individualizado.</p>
+                <p>Combinamos terapia manual, terapia vertebral y técnicas de electroterapia con un acompañamiento cercano en cada sesión, trabajando tanto el alivio inmediato del dolor como la corrección de las causas que lo originan.</p>
+                <p>Nuestro objetivo es que recuperes tu movilidad y calidad de vida, ya sea que vengas por una lesión puntual o por un dolor crónico que arrastras desde hace tiempo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="condition-tags-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Lo que tratamos</span>
+                <h3>Patologías y Dolencias que Abordamos</h3>
+            </div>
+            <div class="condition-tags-grid">
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Cervicalgias</span></div>
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Dorsalgias</span></div>
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Lumbalgias</span></div>
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Hernias discales</span></div>
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Protusiones</span></div>
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Ciática</span></div>
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Escoliosis</span></div>
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Alteraciones posturales</span></div>
+                <div class="condition-tag"><i class="fa-solid fa-circle-notch"></i><span>Dolor crónico musculoesquelético</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h3>Empieza tu recuperación hoy</h3>
+            <p>Reserva una valoración con nuestro equipo de fisioterapia y da el primer paso hacia una vida sin dolor.</p>
+            <div class="cta-banner-actions">
+                <a href="#reserva" class="btn btn-primary">Reservar cita</a>
+                <a href="https://wa.me/34628675292" target="_blank" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Escríbenos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="psiquiatria" class="page-hero">
+        <div class="container page-hero-content">
+            <span class="page-eyebrow">Psiquiatría</span>
+            <h2>Atención médica especializada para tu salud mental, en cada etapa de la vida.</h2>
+            <p class="page-hero-lede">Prevención, evaluación y tratamiento integral de los trastornos de la salud mental, con un enfoque humano y riguroso.</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-text">
+                <span class="subtitle">Nuestro enfoque</span>
+                <h3>Psiquiatría con un enfoque integral y cercano</h3>
+                <p>En Harmony entendemos la psiquiatría como una disciplina médica que requiere tiempo, escucha y rigor clínico. Realizamos una evaluación completa de cada paciente para establecer un diagnóstico preciso y diseñar un plan de tratamiento ajustado a su situación particular.</p>
+                <p>Atendemos tanto a adultos como a población infantil y adolescente, abordando desde el TDAH y los trastornos del estado de ánimo hasta los trastornos del sueño, el TOC y las dificultades de regulación emocional.</p>
+                <p>Trabajamos de forma coordinada con psicología, nutrición y el resto de especialidades de la clínica, ofreciendo un seguimiento continuo y un tratamiento verdaderamente integral.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialties-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Áreas de Atención</span>
+                <h3>Especialidades en Psiquiatría</h3>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-user"></i></div>
+                    <h3>Psiquiatría de Adultos</h3>
+                    <p>Evaluación y tratamiento de los trastornos de salud mental en la edad adulta, con un seguimiento individualizado.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-child"></i></div>
+                    <h3>Psiquiatría Infantil y Adolescente</h3>
+                    <p>Atención especializada a la salud mental de niños y adolescentes, con un enfoque adaptado a cada etapa del desarrollo.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>TDAH</h3>
+                    <p>Diagnóstico y tratamiento del trastorno por déficit de atención e hiperactividad en niños, adolescentes y adultos.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-cloud-rain"></i></div>
+                    <h3>Ansiedad y Depresión</h3>
+                    <p>Tratamiento médico de los trastornos de ansiedad y del estado de ánimo, con un abordaje integral y personalizado.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-moon"></i></div>
+                    <h3>Trastornos del Sueño</h3>
+                    <p>Evaluación y tratamiento de las alteraciones del sueño que afectan al bienestar físico y emocional del paciente.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                    <h3>TOC y Regulación Emocional</h3>
+                    <p>Tratamiento del trastorno obsesivo-compulsivo y de las dificultades en la regulación de las emociones.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <h3>Trastornos de la Conducta Alimentaria</h3>
+                    <p>Abordaje médico especializado de los trastornos de la conducta alimentaria, en coordinación con nutrición y psicología.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <h3>Seguimiento y Tratamiento Integral</h3>
+                    <p>Acompañamiento continuo a lo largo del proceso terapéutico, con revisiones periódicas y ajuste del plan de tratamiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h3>Da el primer paso para tu bienestar</h3>
+            <p>Solicita una primera consulta con nuestro equipo de psiquiatría, con total confidencialidad.</p>
+            <div class="cta-banner-actions">
+                <a href="#reserva" class="btn btn-primary">Reservar cita</a>
+                <a href="https://wa.me/34628675292" target="_blank" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Escríbenos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="psicopedagogia" class="page-hero">
+        <div class="container page-hero-content">
+            <span class="page-eyebrow">Psicopedagogía</span>
+            <h2>Porque cada niño aprende de forma diferente, pero todos merecen la oportunidad de desarrollar su máximo potencial.</h2>
+            <p class="page-hero-lede">Acompañamos a niños, adolescentes y familias para comprender las dificultades de aprendizaje y potenciar sus capacidades.</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-text">
+                <span class="subtitle">Nuestro enfoque</span>
+                <h3>Acompañamiento psicopedagógico centrado en el niño y su entorno</h3>
+                <p>En Harmony entendemos que las dificultades de aprendizaje no definen el potencial de un niño, sino que señalan dónde necesita un apoyo distinto. Por eso, realizamos una evaluación psicopedagógica completa que identifica tanto las áreas a reforzar como las fortalezas sobre las que construir.</p>
+                <p>Trabajamos la atención, la memoria y las funciones ejecutivas, así como las necesidades educativas específicas, siempre en estrecha colaboración con la familia y, cuando es necesario, con el centro educativo del niño.</p>
+                <p>Nuestro objetivo es ofrecer un acompañamiento integral: desde la evaluación inicial hasta el informe psicopedagógico, pasando por la orientación continua a las familias.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialties-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Áreas de Trabajo</span>
+                <h3>Secciones de Psicopedagogía</h3>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <h3>Dificultades de Aprendizaje</h3>
+                    <p>Evaluación y tratamiento de dificultades en lectura, escritura y cálculo que afectan al rendimiento académico.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-gears"></i></div>
+                    <h3>Atención, Memoria y Funciones Ejecutivas</h3>
+                    <p>Entrenamiento de la atención, la memoria de trabajo y las funciones ejecutivas para mejorar la autonomía en el aprendizaje.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                    <h3>Necesidades Educativas Específicas</h3>
+                    <p>Acompañamiento adaptado a niños con necesidades educativas específicas, diseñando estrategias individualizadas.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-people-roof"></i></div>
+                    <h3>Orientación a Familias</h3>
+                    <p>Pautas y herramientas prácticas para que las familias puedan acompañar el proceso de aprendizaje en casa.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-school"></i></div>
+                    <h3>Coordinación con Centros Educativos</h3>
+                    <p>Trabajo conjunto con los centros escolares para garantizar la coherencia entre el tratamiento y el entorno académico.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3>Informes Psicopedagógicos</h3>
+                    <p>Elaboración de informes detallados que documentan la evaluación realizada y orientan las medidas de apoyo necesarias.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <h3>Becas MEC y Ayudas Educativas</h3>
+                    <p>Asesoramiento sobre becas del Ministerio de Educación y otras ayudas disponibles para el tratamiento psicopedagógico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h3>Demos juntos el siguiente paso</h3>
+            <p>Solicita una valoración psicopedagógica y descubre cómo podemos apoyar el desarrollo de tu hijo o hija.</p>
+            <div class="cta-banner-actions">
+                <a href="#reserva" class="btn btn-primary">Reservar cita</a>
+                <a href="https://wa.me/34628675292" target="_blank" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Escríbenos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="nutricion" class="page-hero">
+        <div class="container page-hero-content">
+            <span class="page-eyebrow">Nutrición</span>
+            <h2>Alimentación personalizada para sentirte mejor, rendir más y cuidar tu salud en cada etapa de la vida.</h2>
+            <p class="page-hero-lede">Asesoramiento dietético basado en evidencia clínica para optimizar tu bienestar integral.</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-text">
+                <span class="subtitle">Nuestro enfoque</span>
+                <h3>Nutrición clínica basada en evidencia, adaptada a tu vida</h3>
+                <p>En Harmony abordamos la nutrición desde una perspectiva clínica y profundamente personalizada. Cada plan de alimentación se diseña a partir de una valoración individual que tiene en cuenta tu historial de salud, tus objetivos y tu día a día real.</p>
+                <p>Trabajamos con deportistas que buscan optimizar su rendimiento, personas que buscan mejorar su composición corporal, mujeres en distintas etapas hormonales y familias que quieren establecer hábitos saludables desde la infancia.</p>
+                <p>Toda recomendación, incluida la suplementación, se basa en evidencia científica actualizada, sin promesas vacías ni dietas milagro.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialties-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Especialidades Destacadas</span>
+                <h3>Áreas de Nutrición</h3>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <h3>Nutrición Deportiva</h3>
+                    <p>Planes nutricionales diseñados para optimizar el rendimiento, la recuperación y la composición corporal del deportista.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-weight-scale"></i></div>
+                    <h3>Pérdida de Peso y Composición Corporal</h3>
+                    <p>Estrategias nutricionales sostenibles orientadas a mejorar la composición corporal de forma saludable y duradera.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-pills"></i></div>
+                    <h3>Suplementación Basada en Evidencia</h3>
+                    <p>Recomendaciones de suplementación fundamentadas en la literatura científica actual, sin productos innecesarios.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-venus"></i></div>
+                    <h3>Nutrición Hormonal Femenina</h3>
+                    <p>Abordaje nutricional específico para las distintas etapas hormonales de la mujer, incluido el ciclo menstrual y la menopausia.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-baby"></i></div>
+                    <h3>Fertilidad, Embarazo y Posparto</h3>
+                    <p>Acompañamiento nutricional durante la búsqueda de embarazo, la gestación y la recuperación en el posparto.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                    <h3>Nutrición Infantil y Familiar</h3>
+                    <p>Educación nutricional y planes adaptados para fomentar hábitos saludables desde la infancia, junto a toda la familia.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <h3>Salud Digestiva y Metabólica</h3>
+                    <p>Valoración y tratamiento nutricional de molestias digestivas y alteraciones metabólicas que afectan al bienestar diario.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h3>Empieza a cuidarte desde dentro</h3>
+            <p>Reserva tu primera consulta de nutrición y diseñemos juntos un plan adaptado a tu vida.</p>
+            <div class="cta-banner-actions">
+                <a href="#reserva" class="btn btn-primary">Reservar cita</a>
+                <a href="https://wa.me/34628675292" target="_blank" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Escríbenos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="psicologia" class="page-hero">
+        <div class="container page-hero-content">
+            <span class="page-eyebrow">Psicología</span>
+            <h2>Un espacio para comprender lo que te ocurre y aprender a gestionarlo.</h2>
+            <p class="page-hero-lede">Cuidar tu salud mental también es cuidar tu bienestar. Te acompañamos para que encuentres herramientas, equilibrio y confianza para afrontar cada etapa de tu vida.</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-text">
+                <span class="subtitle">Nuestro enfoque</span>
+                <h3>Psicología clínica adaptada a cada momento vital</h3>
+                <p>En Harmony creemos que la terapia psicológica debe ser, ante todo, un espacio seguro donde sentirse escuchado sin juicios. Trabajamos con adultos, adolescentes y familias, adaptando el enfoque terapéutico a la situación y al momento vital de cada persona.</p>
+                <p>Abordamos desde la ansiedad y el estrés cotidiano hasta cuestiones más específicas como el uso problemático de pantallas y videojuegos, las dificultades en las relaciones de pareja o los procesos de duelo y cambios vitales.</p>
+                <p>Como parte de nuestro compromiso con la accesibilidad, ofrecemos también terapia psicológica en inglés, pensada para la comunidad internacional que vive en la zona.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialties-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Áreas de Terapia</span>
+                <h3>Especialidades en Psicología</h3>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-cloud-bolt"></i></div>
+                    <h3>Ansiedad y Estrés</h3>
+                    <p>Herramientas terapéuticas para gestionar la ansiedad y el estrés en el día a día, recuperando el equilibrio emocional.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-heart"></i></div>
+                    <h3>Autoestima y Gestión Emocional</h3>
+                    <p>Trabajo terapéutico orientado a fortalecer la autoestima y desarrollar una gestión emocional más saludable.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <h3>Videojuegos y Uso Problemático de Pantallas</h3>
+                    <p>Abordaje del uso problemático de videojuegos y pantallas, especialmente en infancia y adolescencia.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-house-user"></i></div>
+                    <h3>Adolescencia y Familia</h3>
+                    <p>Acompañamiento a adolescentes y sus familias en una etapa de cambios físicos, emocionales y de identidad.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-people-pulling"></i></div>
+                    <h3>Relaciones Personales y de Pareja</h3>
+                    <p>Terapia centrada en mejorar la comunicación y resolver conflictos en las relaciones personales y de pareja.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-dove"></i></div>
+                    <h3>Duelo y Cambios Vitales</h3>
+                    <p>Acompañamiento terapéutico en procesos de duelo y otros cambios vitales significativos.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <h3>Evaluación Psicológica</h3>
+                    <p>Evaluaciones psicológicas completas que permiten establecer un diagnóstico claro y un plan terapéutico adecuado.</p>
+                </div>
+                <div class="specialty-card specialty-card--highlight">
+                    <div class="specialty-icon"><i class="fa-solid fa-globe"></i></div>
+                    <h3>Psychological Therapy in English</h3>
+                    <p>We offer psychological therapy sessions fully in English for the international community living in the area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h3>Mereces sentirte mejor</h3>
+            <p>Reserva tu primera sesión con nuestro equipo de psicología, en español o en inglés.</p>
+            <div class="cta-banner-actions">
+                <a href="#reserva" class="btn btn-primary">Reservar cita</a>
+                <a href="https://wa.me/34628675292" target="_blank" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> Escríbenos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="reserva" class="booking-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Agenda tu Consulta</span>
+                <h2>Gestión de Citas</h2>
+            </div>
+
+            <div class="booking-grid">
+                <div class="booking-info">
+                    <p class="intro-booking">Disponemos de un sistema ágil de reservas para garantizar un tiempo exclusivo asignado a cada tratamiento sanitario.</p>
+
+                    <div class="bizum-card">
+                        <div class="bizum-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3>Garantía de Reserva</h3>
+                        <p>Para confirmar la reserva de la cita se solicitará una señal mediante <strong>Bizum</strong>. Esto ayuda a garantizar la disponibilidad de la hora reservada y evitar cancelaciones de última hora.</p>
+                        <ul class="bizum-notes">
+                            <li><i class="fa-solid fa-check"></i> La señal se descontará del precio final de la consulta.</li>
+                            <li><i class="fa-solid fa-triangle-exclamation"></i> Las cancelaciones con poca antelación pueden perder la reserva.</li>
+                        </ul>
+                    </div>
+
+                    <div class="direct-channels">
+                        <a href="https://wa.me/34628675292" target="_blank" class="btn btn-whatsapp-direct">
+                            <i class="fa-brands fa-whatsapp"></i> Reservar por WhatsApp
+                        </a>
+                        <a href="mailto:harmonyclinicasgp@gmail.com" class="btn btn-email-direct">
+                            <i class="fa-regular fa-envelope"></i> Enviar Email Directo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="booking-form-container">
+                    <form class="modern-form" id="reservaForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana García" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Teléfono de Contacto</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="Ej. 600 000 000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="servicio">Especialidad Requerida</label>
+                            <select id="servicio" name="servicio" required>
+                                <option value="" disabled selected>Selecciona un servicio</option>
+                                <option value="logopedia">Logopedia</option>
+                                <option value="traumatologia">Traumatología y Cirugía Ortopédica</option>
+                                <option value="fisioterapia">Fisioterapia</option>
+                                <option value="psicopedagogia">Psicopedagogía</option>
+                                <option value="nutricion">Nutrición</option>
+                                <option value="psicologia">Psicología</option>
+                                <option value="psiquiatria">Psiquiatría</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje o Preferencia Horaria</label>
+                            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Indícanos brevemente tu motivo de consulta o disponibilidad..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">Solicitar Cita Previa</button>
+                        <p class="form-success" id="formSuccess" style="display:none;">
+                            <i class="fa-solid fa-circle-check"></i> ¡Solicitud enviada! Nos pondremos en contacto contigo muy pronto.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonios" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Experiencias Harmony</span>
+                <h2>La Opinión de Nuestros Pacientes</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"La atención en el área de neuropsicología superó mis expectativas. El trato es sumamente sofisticado, riguroso y humano. Un espacio de paz absoluto."</p>
+                    <span class="patient-name">Elena R.</span>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Excelentes profesionales en fisioterapia. El sistema de reserva con Bizum me pareció muy ágil y formaliza la seriedad que transmite la clínica."</p>
+                    <span class="patient-name">Carlos M.</span>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Un enfoque integral real. He combinado terapia nutricional y psicológica y el cambio de salud ha sido asombroso. Instalaciones de absoluto lujo."</p>
+                    <span class="patient-name">Sofía V.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h2>HARMONY</h2>
+                <p>Clínica Integral de Salud y Bienestar Premium.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Especialidades</h3>
+                <ul>
+                    <li><a href="#logopedia">Logopedia</a></li>
+                    <li><a href="#traumatologia">Traumatología</a></li>
+                    <li><a href="#fisioterapia-page">Fisioterapia</a></li>
+                    <li><a href="#psiquiatria">Psiquiatría</a></li>
+                    <li><a href="#psicopedagogia">Psicopedagogía</a></li>
+                    <li><a href="#nutricion">Nutrición</a></li>
+                    <li><a href="#psicologia">Psicología</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p><i class="fa-regular fa-envelope"></i> harmonyclinicasgp@gmail.com</p>
+                <p><i class="fa-brands fa-whatsapp"></i> +34 628 675 292</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Harmony. Todos los derechos reservados. Sanidad y Excelencia.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/34628675292" class="whatsapp-floating" target="_blank" aria-label="Contacto por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+    document.getElementById('reservaForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nombre   = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value;
+        const servicio = document.getElementById('servicio').value;
+        const mensaje  = document.getElementById('mensaje').value;
+        const subject  = encodeURIComponent('Solicitud de Cita – Harmony Clínica');
+        const body     = encodeURIComponent(`Nombre: ${nombre}\nTeléfono: ${telefono}\nServicio: ${servicio}\n\nMensaje:\n${mensaje}`);
+        window.location.href = `mailto:harmonyclinicasgp@gmail.com?subject=${subject}&body=${body}`;
+        document.getElementById('formSuccess').style.display = 'block';
+        this.reset();
+    });
+
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    navToggle.addEventListener('click', function() {
+        const isOpen = navMenu.classList.toggle('is-open');
+        navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    </script>
+</body>
+</html>
